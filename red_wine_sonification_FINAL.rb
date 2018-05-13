@@ -4,7 +4,7 @@
 require 'csv'
 use_osc "localhost", 12000
 
-$data = CSV.parse(File.read("/Users/marcstpierre/Google Drive/red.csv"), {:headers => true, :header_converters => :symbol})
+data = CSV.parse(File.read("YOUR PATH HERE/FILE NAME.csv"), {:headers => true, :header_converters => :symbol})
 
 define :histogram do |data, key, mul|
   data[key].inject(Hash.new(0)) { |hash, value| hash[quantise(value.to_f * mul, 1)] += 1; hash}
@@ -34,7 +34,7 @@ parameter = [
 ].ring
 
 live_loop :univariate_distribution do
-  h = histogram($data, parameter.tick, 1000)
+  h = histogram(data, parameter.tick, 1000)
   osc "/param", parameter.look.to_s
   
   notes = normalize(h.keys, [0, key.size - 1])
