@@ -1,3 +1,7 @@
+//Displays png images of univariate distributions for red wine parameters
+//Communicates with Sonic Pi via OSC
+//Marc St. Pierre May 2018
+
 import oscP5.*;
 OscP5 oscP5;
 
